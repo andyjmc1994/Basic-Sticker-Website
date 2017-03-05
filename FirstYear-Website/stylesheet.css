@@ -1,0 +1,9 @@
+h1 {color:white;font-family:"Verdana";margin-left:20px;}
+h2 {color:black;font-family:"Verdana";font-size:100%;margin-left:20px;}
+div#container {background-color:grey;}
+div#header {background-color:#3B5998;}
+div#footer {background-color:#3B5998;color:#FFFFFF;font-family:"Verdana";}
+div#contentleft {background-color:white; margin-top:2px;margin-bottom:2px;margin-left:1px;}
+div#contentright {background-color:white; margin-top:2px;margin-bottom:2px;margin-right:1px;}
+div#content {background-color:white;float:left;margin-top:110px;margin-left:50px;}
+ 

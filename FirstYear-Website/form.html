@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<script LANGUAGE="JavaScript">
+
+var quant = 10;
+
+function quantchange(){
+	var quant = document.getElementById("quant").value;
+	var priceBox = document.getElementById("price");
+    if (quant > 10){
+        quant = 10;
+        document.getElementById("quant").value = 10;
+    }
+    else if (quant < 1){
+        quant = 1;
+        document.getElementById("quant").value = 1;
+    }
+	price = quant * 2.50
+    
+	if (quant == 1 || quant == 3 || quant == 5 || quant == 7 || quant == 9) {
+		priceBox.innerHTML = 'Price: ' + price + '0 GBP';
+	}
+	else{
+		priceBox.innerHTML = 'Price: ' + price + '.00 GBP';
+	}
+
+}
+
+function validate() {
+    var quant = document.getElementById("quant").value;
+    if (quant > 10){
+        quant = 10;
+        document.getElementById("quant").value = 10;
+    }
+    else if (quant < 1){
+        quant = 1;
+        document.getElementById("quant").value = 1;
+    }
+    var x=document.forms["form"]["fname"].value;
+    if (x==null || x==""){
+        alert("First name must be filled out");
+        return false;
+    }
+    var x=document.forms["form"]["lname"].value;
+    if (x==null || x==""){
+        alert("Last name must be filled out");
+        return false;
+    }
+    var x=document.forms["form"]["email"].value;
+    if (x==null || x==""){
+        alert("Email must be filled out");
+        return false;
+    }
+    var x=document.forms["form"]["phone"].value;
+    if (x==null || x==""){
+        alert("Phone Number must be filled out");
+        return false;
+    }
+    var x=document.forms["form"]["address1"].value;
+    if (x==null || x==""){
+        alert("Address line 1 must be filled out");
+        return false;
+    }
+    var x=document.forms["form"]["address2"].value;
+    if (x==null || x==""){
+        alert("Address line 2 must be filled out");
+        return false;
+    }
+    var x=document.forms["form"]["County"].value;
+    if (x==null || x==""){
+        alert("County must be filled out");
+        return false;
+    }
+    var x=document.forms["form"]["postcode"].value;
+    if (x==null || x==""){
+        alert("County must be filled out");
+        return false;
+    }
+}
+
+</script>
+
+
+
+<div id="container" style="width:1000px; float;center;">
+
+<div id="header" style="">
+<h1 style="margin-bottom:0;">[theStickerbook]</h1></div>
+
+<div id="contentleft" style="height:500px;width:498px;float:left;">
+	<form name="form" onsubmit="return validate()"  action="form.php" method="post">
+		<h2 id="textchoose" > Please enter your personal details.</h2>
+
+		<input style="margin-left:20px"  type = "text" name = "fname" placeholder="First Name"><br>
+      
+        	<input style="margin-left:20px" type = "text" name = "lname" placeholder="Last Name"><br>
+      
+         	<input style="margin-left:20px" type = "email" name = "email" placeholder="Email"><br>
+      
+         	<input style="margin-left:20px" type = "number" name = "phone" placeholder="Contact Number"><br> <br>
+         	
+         	<input style="margin-left:20px" type = "text" name = "address1" placeholder="Address line 1"><br> 
+         	
+         	<input style="margin-left:20px" type = "text" name = "address2" placeholder="Address line 2"><br>
+         	
+         	<input style="margin-left:20px" type = "text" name = "county" placeholder="County"><br>
+         	
+         	<input style="margin-left:20px" type = "text" name = "postcode" placeholder="Post Code"><br><br>
+         	
+         	<h2 id="textchoose" > How many (Packs of 10 Stickers) would you like? (max 10):</h2>
+         	
+            <input id="quant" style="margin-left:20px" type = "number" name = "quantity" value=1 ><br><br>
+
+		<h2 id="price" >Price: 2.50</h2>
+		
+            <button name="form" style="float:right; margin-right:50px;margin-top;50px" id="submit" type="submit">Submit Order!</button>
+        </form>
+			<button style="margin-left:20px" onclick="quantchange()" id="uprice">Update Price!</button>
+
+
+
+
+
+
+
+         </form>
+</div>	
+
+<div id="contentright" style="height:500px;width:498px;float:right;">
+
+</div>
+
+<div id="footer" style="clear:both;text-align:center">Andy McFadyen</div>
+
+</div>
+
+</body>
+</html>

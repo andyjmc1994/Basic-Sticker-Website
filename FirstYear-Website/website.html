@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<script LANGUAGE="JavaScript">
+var shapeChosen = null;
+var colourChosen = null;
+var imageChosen = null;
+var oldfontsize = null;
+var oldfont = null;
+var Tcolour = null;
+var textString = null;
+var oldTcolour = null;
+var textX = 110;
+var textY = 90;
+var oldtextX = 0;
+var oldtextY = 0;
+var userImg = null;
+var userChanged = false;
+
+function chosenCircle() {
+	shapeChosen = 'Circle';
+	if (colourChosen != null){
+		setColour(colourChosen);
+	}
+	else{
+		showColours();
+		ctx.clearRect (0, 0, 400, 400);
+		ctx.beginPath();
+		ctx.lineWidth="10";
+		ctx.strokeStyle="#3B5998";
+		ctx.arc(200,200,180,0,2*Math.PI);
+		ctx.stroke();
+	}
+}
+function chosenSquare() {
+	shapeChosen = 'Square';
+	if (colourChosen != null){
+		setColour(colourChosen);
+	}
+	else{
+		showColours();
+		ctx.clearRect (0, 0, 400, 400);
+		ctx.beginPath();
+		ctx.lineWidth="10";
+		ctx.strokeStyle="#3B5998";
+		ctx.rect(10,10,380,380); 
+		ctx.stroke();
+	}
+}
+
+
+function SaveAsImage(){
+	alert('img')
+	var img = ctx.toDataURL("image/png");
+	//ctx.drawImage(img,(130-(img.width/2)),(120-(img.height/2)),220,220);
+
+}
+
+function showImages(){
+	imagechoose.style.visibility = "visible";
+	jay.style.visibility = "visible";
+	redhot.style.visibility = "visible";
+	nufc.style.visibility = "visible";
+	brazil.style.visibility = "visible";
+	panda.style.visibility = "visible";
+	pulp.style.visibility = "visible";
+	input.style.visibility = "visible";
+
+}
+
+function showColours(){
+	colourchoose.style.visibility = "visible";
+	green.style.visibility = "visible";
+	yellow.style.visibility = "visible";
+	orange.style.visibility = "visible";
+	blue.style.visibility = "visible";
+	red.style.visibility = "visible";
+	pink.style.visibility = "visible";
+
+}
+
+function showTextAdd(){
+	textchoose.style.visibility = "visible";
+	theText.style.visibility = "visible";
+	Tgreen.style.visibility = "visible";
+	Tyellow.style.visibility = "visible";
+	Torange.style.visibility = "visible";
+	Tblue.style.visibility = "visible";
+	Tred.style.visibility = "visible";
+	Tpink.style.visibility = "visible";
+	up.style.visibility = "visible";
+	down.style.visibility = "visible";
+	left.style.visibility = "visible";
+	right.style.visibility = "visible";
+	fontSize.style.visibility = "visible";
+	theFont.style.visibility = "visible";
+	updateB.style.visibility = "visible";
+	submit.disabled = false;
+
+}
+
+function setJay() {
+	showTextAdd()
+	if (imageChosen == 'jay'){
+		img = jay;
+		ctx.drawImage(img,(130-(img.width/2)),(120-(img.height/2)),220,220);
+	}
+	else{
+		imageChosen ='jay';
+		setColour(colourChosen)
+	}
+}
+function setRH() {
+	showTextAdd()
+	if (imageChosen == 'redhot'){
+		img = redhot;
+		ctx.drawImage(img,(120-(img.width/2)),(120-(img.height/2)),220,220);
+	}
+	else{
+		imageChosen ='redhot';
+		setColour(colourChosen)
+	}
+}
+function setNUFC() {
+	showTextAdd()
+	if (imageChosen == 'nufc'){
+		img = nufc;
+		ctx.drawImage(img,(120-(img.width/2)),(120-(img.height/2)),220,220);
+	}
+	else{
+		imageChosen ='nufc';
+		setColour(colourChosen)
+	}
+	
+}
+function setBrazil() {
+	showTextAdd()
+	if (imageChosen == 'brazil'){
+		img = brazil;
+		ctx.drawImage(img,(130-(img.width/2)),(120-(img.height/2)),220,220);
+	}
+	else{
+		imageChosen ='brazil';
+		setColour(colourChosen)
+	}
+}
+function setPanda() {
+	showTextAdd()
+	if (imageChosen == 'panda'){
+		img = panda;
+		ctx.drawImage(img,(130-(img.width/2)),(120-(img.height/2)),220,220);
+	}
+	else{
+		imageChosen ='panda';
+		setColour(colourChosen)
+	}
+}
+function setPulp() {
+	showTextAdd()
+	if (imageChosen == 'pulp'){
+		img = pulp;
+		ctx.drawImage(img,(130-(img.width/2)),(120-(img.height/2)),220,220);
+	}
+	else{
+		imageChosen ='pulp';
+		setColour(colourChosen)
+	}
+}
+
+function setUser() {
+	showTextAdd()
+	if (imageChosen == 'user' && userChanged == false){
+		
+		img = userImg;
+		ctx.drawImage(img,90,90,220,220);
+	}
+	else{
+		userChanged = false;
+		imageChosen ='user';
+		setColour(colourChosen)
+	}
+
+
+}
+
+<!--http://blog.teamtreehouse.com/reading-files-using-the-html5-filereader-api  function found and eddited from-->
+function handleFiles(e) {
+    var reader = new FileReader;
+    userChanged = true;
+    reader.onload = function(event) {
+        var img = new Image;
+        img.src = event.target.result;
+        img.onload = function() {
+            //ctx.drawImage(img, 20,20);
+            userchanged = true;
+            userImg = img;
+            setUser();
+        }
+    }
+    reader.readAsDataURL(e.target.files[0]);
+}
+
+
+
+function setColour(colour) {
+	showImages();
+	colourChosen=colour;
+	if (shapeChosen == 'Circle') {
+		ctx.clearRect (0, 0, 400, 400);
+		ctx.beginPath();
+		ctx.arc(200,200,180,0,2*Math.PI);
+		ctx.fillStyle = colour;
+		ctx.fill()
+		ctx.lineWidth="10";
+		ctx.strokeStyle= colour;
+		ctx.stroke();
+	}
+	else {
+		ctx.clearRect (0, 0, 400, 400);
+		ctx.beginPath();
+		ctx.lineWidth="10";
+		ctx.strokeStyle= colour;
+		ctx.fillStyle= colour;
+		ctx.fillRect(10,10,380,380); 
+		ctx.stroke();
+	}
+	if (imageChosen == "jay"){
+		setJay()
+		updateText()
+	}
+	else if (imageChosen == "redhot"){
+		setRH()
+		updateText()
+	}
+	else if (imageChosen == "nufc"){
+		setNUFC()
+		updateText()
+	}
+	else if (imageChosen == "brazil"){
+		setBrazil()
+		updateText()
+	}
+	else if (imageChosen == "panda"){
+		setPanda()
+		updateText()
+	}
+	else if (imageChosen == "pulp"){
+		setPulp()
+		updateText()
+	}
+	else if (imageChosen == "user"){
+		setUser()
+		updateText()
+	}
+}
+
+function moveText(direction){
+	if (direction == 'up'){
+		textY = textY -5
+	}
+	else if (direction == 'down'){
+		textY = textY +5
+	}
+	else if (direction == 'left'){
+		textX = textX -5
+	}
+	else if (direction == 'right'){
+		textX = textX +5
+	}
+	updateText()
+
+}
+
+function updateText(){
+	var fontsize = document.getElementById("fontSize").value;
+	var thefont = document.getElementById("theFont").value;
+	var text = document.getElementById("theText").value;
+	if (thefont == 1){
+		ctx.font=fontsize +'px Verdana';
+	}
+	else if (thefont == 2){
+		ctx.font=fontsize +'px Courier New';
+	}
+	else if (thefont == 3){
+		ctx.font=fontsize +'px Arial';
+	}
+	else if (thefont == 4){
+		ctx.font=fontsize+'px Times New Roman';
+	}
+	if (text != textString || fontsize != oldfontsize || thefont != oldfont || textX != oldtextX || textY != oldtextY) {
+		textString = text;
+		oldfontsize = fontsize
+		oldfont = thefont;
+		oldtextX = textX;
+		oldtextY = textY;
+		setColour(colourChosen);
+		ctx.fillStyle = Tcolour;
+		ctx.fillText(text,textX,textY);
+	}
+	else {
+		ctx.fillStyle = Tcolour;
+		ctx.fillText(text,textX,textY);
+	}
+		
+}
+
+function setTextColour(colour){
+	document.getElementById("Tgreen").width = 30;
+	document.getElementById("Tgreen").height = 30;
+	document.getElementById("Tyellow").width = 30;
+	document.getElementById("Tyellow").height = 30;
+	document.getElementById("Torange").width = 30;
+	document.getElementById("Torange").height = 30;
+	document.getElementById("Tblue").width = 30;
+	document.getElementById("Tblue").height = 30;
+	document.getElementById("Tred").width = 30;
+	document.getElementById("Tred").height = 30;
+	document.getElementById("Tpink").width = 30;
+	document.getElementById("Tpink").height = 30;
+	if (colour == 'green'){
+		document.getElementById("Tgreen").width = 35;
+		document.getElementById("Tgreen").height = 35;
+	}
+	else if (colour == 'yellow'){
+		document.getElementById("Tyellow").width = 35;
+		document.getElementById("Tyellow").height = 35;	
+	}
+	else if (colour == 'orange'){
+		document.getElementById("Torange").width = 35;
+		document.getElementById("Torange").height = 35;	
+	}
+	else if (colour == 'blue'){
+		document.getElementById("Tblue").width = 35;
+		document.getElementById("Tblue").height = 35;	
+	}	
+	else if (colour == 'red'){
+		document.getElementById("Tred").width = 35;
+		document.getElementById("Tred").height = 35;	
+	}
+	else if (colour == 'pink'){
+		document.getElementById("Tpink").width = 35;
+		document.getElementById("Tpink").height = 35;	
+	}		
+	Tcolour = colour;
+}
+</script>
+
+
+
+<div id="container" style="width:1000px; float;center;">
+
+<div id="header" style="">
+<h1 style="margin-bottom:0;">[theStickerbook]</h1></div>
+
+<div id="contentleft" style="height:500px;width:498px;float:left;">
+	<div id="shape" style="z-index:0;">
+		<h2> Select the Shape of your sticker!</h2>
+		<img style="margin-left:20px;" onclick="chosenCircle()" src="circle.png" alt="Circle" width="40" height="40">
+		<img onclick="chosenSquare()" src="square.png" alt="Square" width="40" height="40">
+
+		<h2 id="colourchoose" > Now choose a background colour</h2>
+		<img id="green" style="margin-left:15px;" onclick="setColour('green')" src="green.png" alt="green" width="70" height="70">
+		<img id="yellow" onclick="setColour('yellow')" src="yellow.png" alt="yellow" width="70" height="70">
+		<img id="orange" onclick="setColour('orange')" src="orange.png" alt="orange" width="70" height="70">
+		<img id="blue" onclick="setColour('blue')" src="blue.png" alt="blue" width="70" height="70">
+		<img id="red" onclick="setColour('red')" src="red.png" alt="red" width="70" height="70">
+		<img id="pink" onclick="setColour('magenta')" src="pink.png" alt="pink" width="70" height="70">
+		<h2 id="imagechoose" > Now choose an image for your sticker!</h2>
+		<img id="jay" style="margin-left:20px;" onclick="setJay()" src="jay.png" alt="jay" width="70" height="70">
+		<img id="redhot" onclick="setRH()" src="redhot.png" alt="Circle" width="60" height="60">
+		<img id="nufc" onclick="setNUFC()" src="newcastle.png" alt="Circle" width="60" height="60">
+		<img id="brazil" onclick="setBrazil()" src="brazil.png" alt="Circle" width="60" height="60">
+		<img id="panda" onclick="setPanda()" src="panda.png" alt="Circle" width="60" height="60">
+		<img id="pulp" onclick="setPulp()" src="pulp.png" alt="Circle" width="60" height="60">
+        
+		<input style="margin-left:20px" type="file" id="input"/>
+		
+		
+		<h2 id="textchoose" > Now add some text to your sticker!</h2>
+		<input id="theText" style="margin-left:15px;display:inline-block;" type="text" name="stickerText" maxlength="15" placeholder="Enter your text!"><br>
+		
+		<img id="Tgreen" style="margin-left:15px;margin-top:5px;" onclick="setTextColour('green')" src="green.png" alt="green" width="30" height="30">
+		<img id="Tyellow" onclick="setTextColour('yellow')" src="yellow.png" alt="yellow" width="30" height="30">
+		<img id="Torange" onclick="setTextColour('orange')" src="orange.png" alt="orange" width="30" height="30">
+		<img id="Tblue" onclick="setTextColour('blue')" src="blue.png" alt="blue" width="30" height="30">
+		<img id="Tred" onclick="setTextColour('red')" src="red.png" alt="red" width="30" height="30">
+		<img id="Tpink" onclick="setTextColour('pink')" src="pink.png" alt="pink" width="30" height="30">
+		
+		<img style="margin-left:30px;" id="up" onclick="moveText('up')" src="up.png" alt="up" width="40" height="40">
+		<img id="down" onclick="moveText('down')" src="down.png" alt="up" width="40" height="40">
+		<img style="margin-left:5px;" id="left" onclick="moveText('left')" src="left.png" alt="up" width="40" height="40">
+		<img id="right" onclick="moveText('right')" src="right.png" alt="up" width="40" height="40">
+		
+		<input id="fontSize" style="margin-left:15px;margin-top:15px;display:inline-block;float:left" type="number" name="stickerText" maxlength="3" size="3" placeholder="Size" value="24"><br>
+		<select id="theFont" style="margin-left:17px;margin-top:5px;">
+  			<option value="1">Verdana</option>
+  			<option value="2">Courier New</option>
+  			<option value="3">Arial</option>
+  			<option value="4">Times New Roman</option>
+		</select>
+		<button id="updateB" onClick="updateText(mainTextBox.value)" type="button">Update!</button>
+	</div> 
+
+	
+</div>
+
+<div id="contentright" style="height:500px;width:498px;float:right;">
+	<canvas
+		id="myCanvas" width="400" height="400" 
+		style="margin-left:50px;margin-top:20px;background:#F0F0F0 ">
+	</canvas>
+    <form action="form.html">
+        <button style="float:right; margin-right:50px;margin-top;50px" id="submit" type="submit">Submit!</button>
+    </form>
+	<script>
+		var input = document.getElementById('input');
+		input.addEventListener('change', handleFiles);
+        
+		var c = document.getElementById("myCanvas");
+		var ctx = c.getContext("2d");
+		var mainTextBox = document.getElementById("theText");
+		submit.disabled = true;
+		input.style.visibility = "hidden";
+		imagechoose.style.visibility = "hidden";
+		jay.style.visibility = "hidden";
+		redhot.style.visibility = "hidden";
+		nufc.style.visibility = "hidden";
+		brazil.style.visibility = "hidden";
+		panda.style.visibility = "hidden";
+		pulp.style.visibility = "hidden";
+		colourchoose.style.visibility = "hidden";
+		green.style.visibility = "hidden";
+		yellow.style.visibility = "hidden";
+		orange.style.visibility = "hidden";
+		blue.style.visibility = "hidden";
+		red.style.visibility = "hidden";
+		pink.style.visibility = "hidden";
+		textchoose.style.visibility = "hidden";
+		theText.style.visibility = "hidden";
+		Tgreen.style.visibility = "hidden";
+		Tyellow.style.visibility = "hidden";
+		Torange.style.visibility = "hidden";
+		Tblue.style.visibility = "hidden";
+		Tred.style.visibility = "hidden";
+		Tpink.style.visibility = "hidden";
+		up.style.visibility = "hidden";
+		down.style.visibility = "hidden";
+		left.style.visibility = "hidden";
+		right.style.visibility = "hidden";
+		fontSize.style.visibility = "hidden";
+		theFont.style.visibility = "hidden";
+		updateB.style.visibility = "hidden";
+
+	</script>
+</div>
+
+<div id="footer" style="clear:both;text-align:center">Andy McFadyen</div>
+
+</div>
+
+</body>
+</html>
